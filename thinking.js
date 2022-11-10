@@ -1,8 +1,44 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+// let licenseBadge;
+function renderLicenseBadge(license) {
+  if (license === "MIT") {
+    let licenseBadge = "./badge_images/license-MIT-blue.svg";
+    console.log(license);
+    console.log(licenseBadge);
 
-const generateREADME = ({ title, description, installation, usage, license, contributing, tests, github, email }) =>
-    `# ${title}
+    return licenseBadge;
+  } else if (license === "APACHE 2.0") {
+    let licenseBadge = "./badge_images/license-APACHE 2.0-blue.svg";
+    console.log(license);
+    console.log(licenseBadge);
+
+    return licenseBadge;
+  } else if (license === "GPL 3.0") {
+    let licenseBadge = "./badge_images/license-GPL 3.0-blue.svg";
+    console.log(license);
+    console.log(licenseBadge);
+
+    return licenseBadge;
+  } else if (license === "BSD 3") {
+    let licenseBadge = "./badge_images/license-BSD 3-blue.svg";
+    console.log(license);
+    console.log(licenseBadge);
+
+    return licenseBadge;
+  } else if (license === "None") {
+    let licenseBadge = "";
+    console.log(license);
+    console.log(licenseBadge);
+
+    return licenseBadge;
+  }
+}
+
+const generateREADME = ({ title, licenseBadgeContent, description, installation, usage, license, contributing, tests, github, email }) =>
+  `# ${title}
+
+## ![alt text](${licenseBadgeContent})
 
 ## Description
 
@@ -67,7 +103,7 @@ inquirer
             type: 'list',
             name: 'license',
             message: 'What license does your application have?',
-            choices: ["none"],
+            choices: ["MIT", "APACHE 2.0", "GPL 3.0", "BSD 3", "None"],
         },
         {
             type: 'input',
@@ -82,7 +118,7 @@ inquirer
         {
             type: 'input',
             name: 'github',
-            message: 'What is your github username?', 
+            message: 'What is your GitHub username?', 
         },
         {
             type: 'input',
@@ -91,7 +127,13 @@ inquirer
         },
     ])
     .then((answers) => {
+        const licenseBadgeContent = renderLicenseBadge(answers.license);
+        console.log(licenseBadgeContent);
+        console.log(answers);
+        // answers.push(licenseBadgeContent);
+        // console.log(answers);
         const readmePageContent = generateREADME(answers);
+        console.log(readmePageContent);
         fs.writeFile('sample-README.md', readmePageContent, (err) =>
             err ? console.log(err) : console.log('Successfully created sample-README.md!')
       );
