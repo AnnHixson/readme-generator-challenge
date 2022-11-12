@@ -1,40 +1,23 @@
-# undefined
-
-## ![alt text](undefined)
-
+# sample-project-title
+## ![text](badge_images/license-MIT-blue.svg)
 ## Description
-
-undefined
-
+This is a sample project.
 ## Table of Contents
-
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
-
 ## Installation
-    
-undefined
-    
+Nothing to install.
 ## Usage
-    
-undefined
-
+Just use it.
 ## License
-
-undefined
-    
+b
 ## Contributing
-    
-undefined
-    
-## Tests
-    
-undefined
-    
-## Questions
-    
-You can reach me with additional questions at my GitHub profile [undefined](https://github.com/undefined) or by email at undefined.
+Please don't
+## Tests 
+What indeed. 
+## Questions   
+You can reach me with additional questions at my GitHub profile [AnnHixson](https://github.com/AnnHixson) or by email at you don't really need this, do you.
