@@ -1,57 +1,49 @@
-// Packages
+// Required Packages
 const inquirer = require('inquirer');
 const fs = require('fs');
 
 // Generate Markdown
 const generateREADME = ({ title, description, installation, usage, license, contributing, tests, github, email }) => {
     let licenseBadge;
-    let licenseLink;
     let licenseSection;
     let licenseInformation;
+    // Use the gathered license information from the prompts to get the licenseBadge and licenseSection
     function renderLicenseInformation(input) {
         switch (license) {
           case 'MIT':
             licenseBadge = "badge_images/license-MIT-blue.svg";
-            licenseLink = "a";
-            licenseSection = "b";
-            licenseInformation = [licenseBadge, licenseLink, licenseSection];
+            licenseSection = "This project is licensed under the MIT license.";
+            licenseInformation = [licenseBadge, licenseSection];
             break;
           case 'APACHE 2.0':
             licenseBadge = "badge_images/license-APACHE_2.0-blue.svg";
-            licenseLink = "a";
-            licenseSection = "b";
-            licenseInformation = [licenseBadge, licenseLink, licenseSection];
+            licenseSection = "This project is licensed under the APACHE 2.0 license.";
+            licenseInformation = [licenseBadge, licenseSection];
             break;
           case 'GPL 3.0':
             licenseBadge = "badge_images/license-GPL_3.0-blue.svg";
-            licenseLink = "a";
-            licenseSection = "b";
-            licenseInformation = [licenseBadge, licenseLink, licenseSection];
+            licenseSection = "This project is licensed under the GPL 3.0 license.";
+            licenseInformation = [licenseBadge, licenseSection];
             break;
           case 'BSD 3':
             licenseBadge = "badge_images/license-BSD_3-blue.svg";
-            licenseLink = "a";
-            licenseSection = "b";
-            licenseInformation = [licenseBadge, licenseLink, licenseSection];
+            licenseSection = "This project is licensed under the BSD 3 license.";
+            licenseInformation = [licenseBadge, licenseSection];
             break;
           case 'None':
             licenseBadge = "";
-            licenseLink = "a";
-            licenseSection = "b";
-            licenseInformation = [licenseBadge, licenseLink, licenseSection];
+            licenseSection = "This project is not licensed.";
+            licenseInformation = [licenseBadge, licenseSection];
             break;
           default:
             console.log('renderLicenseInformation is not working');
         }
-        // console.log(licenseBadge);
-        // console.log(licenseLink);
-        // console.log(licenseSection);   
-        // console.log(licenseInformation);
+        // Return the licenseBadge and licenseSection
         return licenseInformation;
     }
-
+    // Call the function
     renderLicenseInformation();
-
+  // Return the contents of the markdown file
   return `# ${title}
 ## ![text](${licenseBadge})
 ## Description
@@ -74,9 +66,10 @@ ${contributing}
 ## Tests 
 ${tests} 
 ## Questions   
-You can reach me with additional questions at my GitHub profile [${github}](https://github.com/${github}) or by email at ${email}.`
+You can reach me with additional questions at my GitHub profile [${github}](https://github.com/${github}) or by email at [${email}](mailto:${email}).`
 }
 
+// Prompts to collect the information to populate the README
 inquirer
     .prompt([
         {
@@ -126,11 +119,10 @@ inquirer
             message: 'What is your email address?', 
         },
     ])
-// Write File
+// Write the README file
     .then((data) => {
-        // console.log(data);
         const readmePageContent = generateREADME(data);
-        fs.writeFile('sample-README.md', readmePageContent, (err) =>
-        err ? console.log(err) : console.log('Successfully created sample-README.md!')
+        fs.writeFile('README.md', readmePageContent, (err) =>
+        err ? console.log(err) : console.log('Successfully created README.md!')
   );
 })
